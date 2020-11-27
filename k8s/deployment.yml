@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-depl
+spec:
+  selector:
+    matchLabels:
+      app: story
+  template:
+    metadata:
+      labels:
+        app: story
+    spec:
+      containers:
+      - name: story
+        imagePullPolicy: Always
+        image: gagandeep39/k8s-node-persist:4
+        volumeMounts:
+          - mountPath: /app/story
+            name: story-volume
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+      volumes:
+        - name: story-volume
+          # Creates an empty directory
+          # Removed only when pod is removed (It can survive restart, crash)
+          # Attached o a sigle pod
+          # emptyDir:  {}
+          hostPath:
+            path: /data
+            type: DirectoryOrCreate
