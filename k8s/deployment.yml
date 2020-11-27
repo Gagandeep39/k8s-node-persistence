@@ -28,6 +28,8 @@ spec:
           # Removed only when pod is removed (It can survive restart, crash)
           # Attached o a sigle pod
           # emptyDir:  {}
-          hostPath:
-            path: /data
-            type: DirectoryOrCreate
+          # hostPath:
+          #   path: /data
+          #   type: DirectoryOrCreate
+          persistentVolumeClaim:
+              claimName: host-pvc
