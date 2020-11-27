@@ -1,0 +1,8 @@
+## Insert data in text file
+# Replace host.docker.internal ith localhost if running outside devcontainer
+POST http://host.docker.internal:3000/story
+Content-Type: application/json
+
+{
+  "text": "Test 2"
+}
