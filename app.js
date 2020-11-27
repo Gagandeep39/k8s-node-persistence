@@ -10,9 +10,11 @@ const filePath = path.join(__dirname, 'story', 'text.txt');
 
 app.use(bodyParser.json());
 
+// If you get error, try calling post request first that creates txt file
 app.get('/story', (req, res) => {
   fs.readFile(filePath, (err, data) => {
     if (err) {
+      console.log(err);
       return res.status(500).json({ message: 'Failed to open file.' });
     }
     res.status(200).json({ story: data.toString() });
