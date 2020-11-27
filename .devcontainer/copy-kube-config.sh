@@ -3,6 +3,7 @@
 # Copies localhost's ~/.kube/config file into the container and swap out localhost
 # for host.docker.internal whenever a new shell starts to keep them in sync.
 if [ "$SYNC_LOCALHOST_KUBECONFIG" = "true" ] && [ -d "/usr/local/share/kube-localhost" ]; then
+    echo "Updating Kubeconfig..."
     mkdir -p $HOME/.kube
     sudo cp -r /usr/local/share/kube-localhost/* $HOME/.kube
     sudo chown -R $(id -u) $HOME/.kube
